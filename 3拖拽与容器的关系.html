@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>与容器盒子相关的拖拽事件</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            background-color: red;
+
+        }
+
+        #container {
+            width: 500px;
+            height: 600px;
+            border: 1px solid black;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div draggable="true" id="box"></div>
+    <div id="container"></div>
+
+</body>
+
+</html>
+<script>
+    var box = document.getElementById('box');
+    var container = document.getElementById('container');
+    // container.ondragenter = function(){
+    //         console.log('11111111,元素进入,元素面积超过一半就可以'); 
+
+    // }
+    // container.ondragleave = function(){
+    //     console.log('2222,元素离开,元素面积超过一半就可以');
+    // }
+
+    // container.ondragover = function(e){
+    //     console.log('333,元素进入到容器内,只要一移动就会触发,很频繁'); 
+    //     e.preventDefault();
+
+    // }
+
+    // //注意:默认不会触发,必须要有ondragover 事件,并且阻止事件的默认行为才可以触发
+    // container.ondrop = function(){
+    //     console.log('444,元素在结束拖拽的时候,如果元素还在容器的范围内(也是以元素面积的一半为准),就会触发');
+    // }
+
+    //1.方法一 使用开关思想
+    // var isOK = false;
+    // container.ondragenter = function(){
+    //     isOK = true
+    //     console.log('111111');
+
+    // }
+    // container.ondragleave = function(){
+    //     isOK= false
+    //     console.log('222222');
+    // }
+    // container.ondragover = function(e){
+    //     // isOK= false
+    //     console.log('33333');
+    //     e.preventDefault();
+
+    // }
+    // box.ondragend = function(){
+    //     if(isOK){
+    //         container.appendChild(box)
+    //     }
+    // }
+
+    //2.方法二 使用ondrop 事件
+
+    container.ondragover = function (e) {
+        e.preventDefault();
+
+    }
+    container.ondrop = function () {
+        container.appendChild(box)
+    }
+
+</script>

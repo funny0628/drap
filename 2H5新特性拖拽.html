@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div draggable="true" class="box"></div>
+</body>
+
+</html>
+<script>
+    var box = document.getElementsByClassName('box')[0];
+    var x;
+    var y;
+
+    box.ondragstart = function (e) {
+        console.log('拖拽开始,只有在元素第一次移动的时候才会触发一次');
+    }
+    box.ondrag = function (e) {
+        console.log('拖拽中');
+    }
+    //H5自带的拖拽事件
+    box.onmousedown = function (e) {
+        x = e.pageX - box.offsetLeft;
+        y = e.pageY - box.offsetTop;
+
+    }
+    box.ondragend = function (e) {
+        console.log('拖拽结束,鼠标弹起的时候触发');
+        box.style.left = e.pageX - x + 'px'
+        box.style.top = e.pageY - y + 'px'
+    }
+</script>
