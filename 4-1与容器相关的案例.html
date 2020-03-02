@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 400px;
+            height: 500px;
+            border: 2px solid black;
+            position: absolute;
+            top: 20px;
+        }
+
+        #left-container {   
+            left: 20px;
+        }
+
+         img {
+            width: 120px;
+            margin-right: 10px;
+            
+        }
+
+        #right-container {
+            right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="left-container">
+        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/755aca9487082e7698e16f17cfb70839.jpg?thumb=1&w=1226&h=460&f=webp&q=90"
+            alt="">
+        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/56e491c83bde043ca4e8ff2d8255dfef.jpg?thumb=1&w=1226&h=460&f=webp&q=90"
+            alt="">
+        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/dcb09c80c58dc9d71623c925739a3733.jpg?thumb=1&w=1226&h=460&f=webp&q=90"
+            alt="">
+        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6bd4174b8c5aad67a64864a5716ad152.jpg?thumb=1&w=1226&h=460&f=webp&q=90"
+            alt="">
+    </div>
+    <div id="right-container"></div>
+</body>
+
+</html>
+<script>
+    var imgList = document.getElementsByTagName('img');
+    var rightContainer = document.getElementById('right-container');
+    var currrentimg = null;
+    for (var i = 0; i < imgList.length; i++) {
+        imgList[i].ondragstart = function () {
+            currrentimg = this
+        }
+    }
+    rightContainer.ondragover = function (e) {
+        e.preventDefault();
+
+    }
+    rightContainer.ondrop = function () {
+        rightContainer.appendChild(currrentimg)
+    }
+
+</script>
+<!-- 
+1.循环每个img 注册 拖拽事件
+2.判断如果拖拽结束,img在容器中.就添加到容器中.在left的盒子中移出当前的img
+
+    
+ -->
